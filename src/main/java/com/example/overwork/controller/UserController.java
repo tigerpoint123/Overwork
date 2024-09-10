@@ -1,19 +1,11 @@
 package com.example.overwork.controller;
 
 import com.example.overwork.entiry.Member;
-import com.example.overwork.repository.MemberRepository;
 import com.example.overwork.service.LoginService;
-import com.example.overwork.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
-
-import java.util.List;
-import java.util.Optional;
 
 @Controller
 public class UserController {
@@ -25,9 +17,11 @@ public class UserController {
     }
 
     @GetMapping("/apply")
-    public String apply(Model model, Member member) {
-//        String username = loginService.findUserName(member);
-        Object username = model.getAttribute("username");
+    public String apply(Model model) {
+        Member member = loginService.saveData();
+//        System.out.println(member.getUsername());
+        model.addAttribute("username", member.getUsername());
+
         return "apply";
     }
 

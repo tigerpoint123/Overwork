@@ -92,7 +92,7 @@ class OverworkTest {
 
         //when
 
-
+        System.out.println(loginService.findUserName(member));
         //then
 
     }

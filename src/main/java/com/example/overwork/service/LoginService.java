@@ -10,7 +10,8 @@ import java.util.Optional;
 
 @Service
 @Transactional
-public class LoginService {
+public class LoginService{
+    Member member = new Member();
 
     @Autowired
     private final MemberRepository memberRepository;
@@ -20,9 +21,10 @@ public class LoginService {
     }
 
     public boolean checkLogin(Member member) {
-        Optional<Member> findByName = memberRepository.findByName(member.getUsername());
+        this.member = member;
+        Optional<Member> findByName = memberRepository.findByName(this.member.getUsername());
 
-        if(findByName.isPresent() && member.getUsername().equals(findByName.get().getUsername()) && member.getPassword().equals(findByName.get().getPassword())) {
+        if(findByName.isPresent() && this.member.getUsername().equals(findByName.get().getUsername()) && this.member.getPassword().equals(findByName.get().getPassword())) {
             return true;
         }
         else return false;
@@ -34,8 +36,7 @@ public class LoginService {
         return member.getUsername();
     }
 
-    public String saveData(String username, String password) {
-        System.out.println(username);
-        return username;
+    public Member saveData() {
+        return this.member;
     }
 }

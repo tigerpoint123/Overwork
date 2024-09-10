@@ -15,6 +15,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
 
+import static org.assertj.core.api.Assertions.*;
+
 @SpringBootTest
 @Transactional // 쿼리 업데이트. 허나 rollback의 성질이 있으므로 commit을 써서 저장된 데이터를 볼 수 있다.
 class OverworkTest {
@@ -64,7 +66,7 @@ class OverworkTest {
 
         //then
         Member findMember = memberService.findOne(id).get();
-        Assertions.assertThat(member.getUsername()).isEqualTo(findMember.getUsername());
+        assertThat(member.getUsername()).isEqualTo(findMember.getUsername());
     }
 
     @Test
@@ -73,18 +75,25 @@ class OverworkTest {
 
         //given
         member.setUsername("user2");
-        member.setPassword("user2");
+        member.setPassword("user");
         member.setGrade(Grade.USER);
 
         //when
-        Assertions.assertThat(loginService.checkLogin(member));
+        assertThat(member.checkLogin(member.getUsername(), member.getPassword()));
+
 
         //then
     }
 
     @Test
     void 초과근무신청하기() {
+        //given
+        Member member = new Member();
 
+        //when
+
+
+        //then
 
     }
 

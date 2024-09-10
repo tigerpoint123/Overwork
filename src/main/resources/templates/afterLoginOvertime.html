@@ -20,12 +20,10 @@
 </nav>
 
 <main>
-    <h2>환영합니다!</h2>
+    <h2 th:text = "${member.username}" id = "username"></h2> <h2 >님 환영합니다!</h2>
     <p>여기에 홈페이지 내용을 입력하세요.</p>
-
-
 <!--    <a href="/members">회원 목록</a>-->
-    <a href="/apply">초과근무 신청</a>
+    <a th:href="@{/apply/${username}}">초과근무 신청</a>
     <a href="/start_end">초과근무 시작/종료</a>
 
 </main>

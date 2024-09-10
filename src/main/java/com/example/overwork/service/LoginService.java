@@ -3,6 +3,7 @@ package com.example.overwork.service;
 import com.example.overwork.entiry.Member;
 import com.example.overwork.repository.MemberRepository;
 import jakarta.transaction.Transactional;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -11,6 +12,7 @@ import java.util.Optional;
 @Transactional
 public class LoginService {
 
+    @Autowired
     private final MemberRepository memberRepository;
 
     public LoginService(MemberRepository memberRepository) {
@@ -19,15 +21,21 @@ public class LoginService {
 
     public boolean checkLogin(Member member) {
         Optional<Member> findByName = memberRepository.findByName(member.getUsername());
-        if (findByName.isPresent()) {
+
+        if(findByName.isPresent() && member.getUsername().equals(findByName.get().getUsername()) && member.getPassword().equals(findByName.get().getPassword())) {
             return true;
-        } else
-            return false;
+        }
+        else return false;
     }
 
     public String findUserName(Member member) {
         Optional<Member> findByName = memberRepository.findByName(member.getUsername());
 
         return member.getUsername();
+    }
+
+    public String saveData(String username, String password) {
+        System.out.println(username);
+        return username;
     }
 }

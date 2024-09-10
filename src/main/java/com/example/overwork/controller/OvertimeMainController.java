@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
 
@@ -28,14 +29,15 @@ public class OvertimeMainController {
         return "overtime";
     }
 
-    @PostMapping("/login")
+    @PostMapping("/login") 
     public String login(@RequestParam("username") String username,
                         @RequestParam("password") String password, Model model, Member member) {
         member.setUsername(username);
         member.setPassword(password);
-        boolean checkLogin = loginService.checkLogin(member);
 
-        if(checkLogin) return "afterLoginOvertime";
+        if(loginService.checkLogin(member)) {
+            return "afterLoginOvertime";
+        }
         else return "redirect:/";
     }
 

@@ -1,5 +1,6 @@
 package com.example.overwork.repository;
 
+import com.example.overwork.entiry.ApplyRecord;
 import com.example.overwork.entiry.Member;
 import jakarta.persistence.EntityManager;
 
@@ -35,5 +36,11 @@ public class JpaMemberRepository implements MemberRepository{
     @Override
     public List<Member> findAll() {
         return em.createQuery("select m from Member m", Member.class).getResultList(); //JPQL
+    }
+
+    @Override
+    public ApplyRecord recordApplyment(ApplyRecord applyRecord) {
+        em.persist(applyRecord);
+        return applyRecord;
     }
 }

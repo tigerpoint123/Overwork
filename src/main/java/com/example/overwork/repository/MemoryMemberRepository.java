@@ -1,5 +1,6 @@
 package com.example.overwork.repository;
 
+import com.example.overwork.entiry.ApplyRecord;
 import com.example.overwork.entiry.Member;
 import org.springframework.stereotype.Repository;
 
@@ -25,6 +26,11 @@ public class MemoryMemberRepository implements MemberRepository{
     @Override
     public List<Member> findAll() {
         return List.of();
+    }
+
+    @Override
+    public ApplyRecord recordApplyment(ApplyRecord applyRecord) {
+        return null;
     }
 
 //    private static Map<Long, Member> store = new HashMap<>();

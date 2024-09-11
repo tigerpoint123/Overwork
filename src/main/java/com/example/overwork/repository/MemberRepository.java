@@ -1,5 +1,6 @@
 package com.example.overwork.repository;
 
+import com.example.overwork.entiry.ApplyRecord;
 import com.example.overwork.entiry.Member;
 
 import java.util.List;
@@ -11,5 +12,5 @@ public interface MemberRepository {
     Optional<Member> findById(Long id);
     Optional<Member> findByName(String username);
     List<Member> findAll();
-
+    ApplyRecord recordApplyment(ApplyRecord applyRecord);
 }

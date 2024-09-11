@@ -1,26 +1,32 @@
 package com.example.overwork.entiry;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "ApplyRecord")
 public class ApplyRecord {
-    @Id
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String username;
-    private String record;
+    private String content;
+    private String date;
     private boolean start;
 
-
-    public String getRecord() {
-        return record;
+    public String getDate() {
+        return date;
     }
 
-    public void setRecord(String record) {
-        this.record = record;
+    public void setDate(String date) {
+        this.date = date;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String record) {
+        this.content = record;
     }
 
     public boolean isStart() {

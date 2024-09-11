@@ -19,14 +19,18 @@
 <main>
     <h2>환영합니다!</h2> <h2 th:text></h2>
 
-    <div class="container" >
-        <div class="box">이름</div>
-        <div class="text-box" th:text = "${username}"></div>
-        <div class="box">신청일</div>
-        <div class="text-box"></div>
-        <div class="box">Box 3</div>
-        <div class="text-box"><textarea placeholder="Enter text..."></textarea></div>
-    </div>
+    <form action="/applyRecord" id="apply-form" method="post">
+        <div class="container" >
+            <div class="box">이름</div>
+            <div class="text-box" th:text = "${username}"></div>
+            <div class="box">신청일</div>
+            <div class="text-box" th:text = "${date}" id = "date" name = "date"></div>
+            <div class="box">신청 내용</div>
+            <div class="text-box"><input type="text" id="content" name="content" required></div>
+            <button type="submit">신청하기</button>
+        </div>
+
+    </form>
 
 </main>
 

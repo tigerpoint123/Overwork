@@ -2,6 +2,7 @@ package com.example.overwork;
 
 import com.example.overwork.repository.JpaMemberRepository;
 import com.example.overwork.repository.MemberRepository;
+import com.example.overwork.service.ApplyService;
 import com.example.overwork.service.LoginService;
 import com.example.overwork.service.MemberService;
 import jakarta.persistence.EntityManager;
@@ -26,6 +27,9 @@ public class SpringConfig {
 
     @Bean
     public LoginService loginService() {return new LoginService(memberRepository());}
+
+    @Bean
+    public ApplyService applyService() {return new ApplyService(memberRepository());}
 
     @Bean
     public MemberRepository memberRepository() {

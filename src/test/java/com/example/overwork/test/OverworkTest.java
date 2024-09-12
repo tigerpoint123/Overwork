@@ -1,8 +1,10 @@
 package com.example.overwork.test;
 
+import com.example.overwork.entiry.ApplyRecord;
 import com.example.overwork.entiry.Grade;
 import com.example.overwork.entiry.Member;
 import com.example.overwork.repository.MemoryMemberRepository;
+import com.example.overwork.service.ApplyService;
 import com.example.overwork.service.LoginService;
 import com.example.overwork.service.MemberService;
 import org.assertj.core.api.Assertions;
@@ -13,6 +15,9 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.Commit;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.*;
@@ -50,6 +55,8 @@ class OverworkTest {
     MemoryMemberRepository memberRepository;
     @Autowired
     LoginService loginService;
+    @Autowired
+    ApplyService applyService;
 
     @Test
 //    @Commit // 테스트 끝나고 데이터를 지우지 않는 것
@@ -57,8 +64,8 @@ class OverworkTest {
         Member member = new Member();
 
         //given
-        member.setUsername("qwer2");
-        member.setPassword("asdf2");
+        member.setUsername("user");
+        member.setPassword("user");
         member.setGrade(Grade.USER);
 
         //when
@@ -86,15 +93,22 @@ class OverworkTest {
     }
 
     @Test
+//    @Commit
     void 초과근무신청하기() {
         //given
         Member member = new Member();
+        ApplyRecord applyRecord = new ApplyRecord();
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+        String nowDate = dateFormat.format(new Date());
 
         //when
+        applyRecord.setUsername("user");
+        applyRecord.setDate(nowDate);
+        applyRecord.setContent("야근이요");
+        applyRecord.setStart(false);
 
-        System.out.println(loginService.findUserName(member));
         //then
-
+        assertThat(applyService.makeRecord(applyRecord));
     }
 
 }

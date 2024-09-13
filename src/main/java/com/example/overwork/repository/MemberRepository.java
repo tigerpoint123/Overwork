@@ -13,4 +13,5 @@ public interface MemberRepository {
     Optional<Member> findByName(String username);
     List<Member> findAll();
     ApplyRecord recordApplyment(ApplyRecord applyRecord);
+    List<ApplyRecord> recordApplymentList();
 }

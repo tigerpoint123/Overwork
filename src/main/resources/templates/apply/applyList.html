@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>나의 멋진 홈페이지</title>
+    <link rel="stylesheet" href="../../static/style.css" th:href="@{style.css}">
+
+    <link rel="stylesheet" href="../../static/applyList.css" th:href="@{applyList.css}">
+</head>
+<body>
+<header>
+    <h1>나의 멋진 홈페이지</h1>
+</header>
+
+<nav>
+    <a href="#home">홈</a>
+    <a href="#about">소개</a>
+    <a href="#services">서비스</a>
+    <a href="#contact">연락처</a>
+</nav>
+
+<main>
+    <table>
+        <thead>
+        <tr>
+            <th>번호</th>
+            <th>내용</th>
+            <th>날짜</th>
+            <th>작성자</th>
+            <th>시작여부</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="list : ${lists}">
+            <td th:text="${list.id}"></td>
+            <td th:text="${list.content}"></td>
+            <td th:text="${list.date}"></td>
+            <td th:text="${list.username}"></td>
+            <td th:text="${list.start}"></td>
+        </tr>
+        </tbody>
+    </table>
+
+</main>
+
+<footer>
+    <p>&copy; 2024 나의 멋진 홈페이지. 모든 권리 보유.</p>
+</footer>
+</body>
+</html>
+
+
+

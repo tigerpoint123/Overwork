@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.function.IntPredicate;
 
 @Service
@@ -21,5 +22,9 @@ public class ApplyService {
     public IntPredicate makeRecord(ApplyRecord applyRecord) {
         memberRepository.recordApplyment(applyRecord);
         return null;
+    }
+
+    public List<ApplyRecord> findApplyList() {
+        return memberRepository.recordApplymentList();
     }
 }

@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>나의 멋진 홈페이지</title>
     <link rel="stylesheet" href="../static/style.css" th:href="@{style.css}">
-
 </head>
 <body>
 <header>
@@ -23,8 +22,10 @@
     <h2 th:text = "${member.username}"></h2> <h2 >님 환영합니다!</h2>
     <p>여기에 홈페이지 내용을 입력하세요.</p>
 <!--    <a href="/members">회원 목록</a>-->
-    <a th:href="@{/apply}">초과근무 신청</a>
-    <a href="/start_end">초과근무 시작/종료</a>
+    <a th:href="@{/apply}">초과근무 신청  </a>
+    <a href="/start_end">초과근무 시작/종료  </a>
+    <a href="/applyList">신청 목록  </a>
+    <a href="/processRecord">진행 목록  </a>
 
 </main>
 

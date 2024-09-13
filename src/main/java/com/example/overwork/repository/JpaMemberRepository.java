@@ -43,4 +43,9 @@ public class JpaMemberRepository implements MemberRepository{
         em.persist(applyRecord);
         return applyRecord;
     }
+
+    @Override
+    public List<ApplyRecord> recordApplymentList() {
+        return em.createQuery("select m from ApplyRecord m", ApplyRecord.class).getResultList();
+    }
 }

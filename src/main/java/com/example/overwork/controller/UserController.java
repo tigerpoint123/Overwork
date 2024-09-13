@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 @Controller
 public class UserController {
@@ -58,6 +59,13 @@ public class UserController {
         model.addAttribute("member", member);
 
         return "afterLoginOvertime";
+    }
+
+    @GetMapping("/applyList")
+    public String applyList(Model model) {
+        List<ApplyRecord> lists = applyService.findApplyList();
+        model.addAttribute("lists", lists);
+        return "apply/applyList";
     }
 }
 

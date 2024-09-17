@@ -14,6 +14,10 @@ public class ApplyRecord {
     private String time;
     private boolean start;
 
+    public void overworkStart(boolean start) {
+        this.start = start;
+    }
+
     public String getTime() {
         return time;
     }

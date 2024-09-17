@@ -72,6 +72,17 @@ public class UserController {
         model.addAttribute("lists", lists);
         return "apply/applyList";
     }
+
+    @PostMapping("/overworkStart")
+    public String overworkStart(Model model) {
+        Member member = loginService.saveData();
+        DateFormat date = new SimpleDateFormat("yyyy-MM-dd");
+        String nowDate = date.format(new Date());
+        applyService.updateStart(nowDate);
+
+        model.addAttribute("member", member);
+        return "afterLoginOvertime";
+    }
 }
 
 

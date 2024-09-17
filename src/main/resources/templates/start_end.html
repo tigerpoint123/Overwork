@@ -18,7 +18,7 @@
 </nav>
 <main>
     <h2>환영합니다!</h2> <h2 th:text></h2>
-    <form>
+    <form method="post" action="/overworkStart">
         <ul th:each="list : ${lists}">
             <td>아이디 =  <span th:text="${list.id}"></span></td>
             <td>신청내용 =  <span th:text="${list.content}"></span></td>

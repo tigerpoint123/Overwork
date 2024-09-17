@@ -3,7 +3,6 @@ package com.example.overwork.test;
 import com.example.overwork.entiry.ApplyRecord;
 import com.example.overwork.entiry.Grade;
 import com.example.overwork.entiry.Member;
-import com.example.overwork.repository.MemoryMemberRepository;
 import com.example.overwork.service.ApplyService;
 import com.example.overwork.service.LoginService;
 import com.example.overwork.service.MemberService;
@@ -18,6 +17,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.*;
@@ -52,7 +52,6 @@ class OverworkTest {
 
     @Autowired
     MemberService memberService;
-    MemoryMemberRepository memberRepository;
     @Autowired
     LoginService loginService;
     @Autowired
@@ -111,4 +110,16 @@ class OverworkTest {
         assertThat(applyService.makeRecord(applyRecord));
     }
 
+    @Test
+    void 초과근무시작하기() {
+        DateFormat date = new SimpleDateFormat("yyyy-MM-dd");
+        String nowDate = date.format(new Date());
+        applyService.updateStart(nowDate);
+
+    }
+
+    @Test
+    void findId() {
+        System.out.println(applyService.findID());
+    }
 }

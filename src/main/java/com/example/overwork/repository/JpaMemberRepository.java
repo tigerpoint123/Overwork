@@ -3,10 +3,8 @@ package com.example.overwork.repository;
 import com.example.overwork.entiry.ApplyRecord;
 import com.example.overwork.entiry.Member;
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.TypedQuery;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -57,4 +55,25 @@ public class JpaMemberRepository implements MemberRepository{
         return em.createQuery("select m from ApplyRecord m where m.date =: nowDate", ApplyRecord.class)
                 .setParameter("nowDate", nowDate).getResultList();
     }
+
+    @Override
+    public Optional<ApplyRecord> updateStart(String nowDate) {
+
+
+//        ApplyRecord applyRecord = em.find(ApplyRecord.class, id);
+//        applyRecord.setStart(true);
+        return null;
+    }
+
+    @Override
+    public TypedQuery<ApplyRecord> findId() {
+        TypedQuery<ApplyRecord> query = em.createQuery("select m.id from ApplyRecord m", ApplyRecord.class);
+        return query;
+    }
+
+    @Override
+    public List<ApplyInfoMapping> letsFindId() {
+        return List.of();
+    }
+
 }

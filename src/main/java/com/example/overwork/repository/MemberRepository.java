@@ -13,5 +13,6 @@ public interface MemberRepository {
     Optional<Member> findByName(String username);
     List<Member> findAll();
     ApplyRecord recordApplyment(ApplyRecord applyRecord);
-    List<ApplyRecord> recordApplymentList();
+    List<ApplyRecord> allRecordApplymentList();
+    List<ApplyRecord> findTodayApplymentList(String nowDate);
 }

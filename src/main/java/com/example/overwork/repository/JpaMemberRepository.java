@@ -4,6 +4,9 @@ import com.example.overwork.entiry.ApplyRecord;
 import com.example.overwork.entiry.Member;
 import jakarta.persistence.EntityManager;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -45,7 +48,13 @@ public class JpaMemberRepository implements MemberRepository{
     }
 
     @Override
-    public List<ApplyRecord> recordApplymentList() {
+    public List<ApplyRecord> allRecordApplymentList() {
         return em.createQuery("select m from ApplyRecord m", ApplyRecord.class).getResultList();
+    }
+
+    @Override
+    public List<ApplyRecord> findTodayApplymentList(String nowDate) {
+        return em.createQuery("select m from ApplyRecord m where m.date =: nowDate", ApplyRecord.class)
+                .setParameter("nowDate", nowDate).getResultList();
     }
 }

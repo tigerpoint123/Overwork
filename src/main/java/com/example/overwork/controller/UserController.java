@@ -40,7 +40,9 @@ public class UserController {
     }
 
     @GetMapping("start_end")
-    public String startEnd() {
+    public String startEnd(Model model) {
+        List<ApplyRecord> list = applyService.findTodayApplyment();
+        model.addAttribute("lists", list);
 
         return "start_end";
     }
@@ -48,10 +50,13 @@ public class UserController {
     @PostMapping("/applyRecord")
     public String makeApplyRecord(@RequestParam("content") String content, ApplyRecord applyRecord, Model model) {
         Member member = loginService.saveData();
-        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
-        String nowDate = dateFormat.format(new Date());
+        DateFormat date = new SimpleDateFormat("yyyy-MM-dd");
+        DateFormat time = new SimpleDateFormat("HH:mm");
+        String nowDate = date.format(new Date());
+        String nowTime = time.format(new Date());
 
         applyRecord.setDate(nowDate);
+        applyRecord.setTime(nowTime);
         applyRecord.setContent(content);
         applyRecord.setUsername(member.getUsername());
 

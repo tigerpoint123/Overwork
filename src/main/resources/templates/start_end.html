@@ -18,6 +18,19 @@
 </nav>
 <main>
     <h2>환영합니다!</h2> <h2 th:text></h2>
+    <form>
+        <ul th:each="list : ${lists}">
+            <td>아이디 =  <span th:text="${list.id}"></span></td>
+            <td>신청내용 =  <span th:text="${list.content}"></span></td>
+            <td>신청날짜 =  <span th:text="${list.date}"></span></td>
+            <td>신청시간 =  <span th:text="${list.time}"></span></td>
+            <td>사용자 =  <span th:text="${list.username}"></span></td>
+            <td>시작여부 =  <span th:text="${list.start}"></span></td>
+        </ul>
+        <button type="submit">시작</button>
+        <button type="submit">취소</button>
+    </form>
+
 </main>
 
 </body>

@@ -11,7 +11,16 @@ public class ApplyRecord {
     private String username;
     private String content;
     private String date;
+    private String time;
     private boolean start;
+
+    public String getTime() {
+        return time;
+    }
+
+    public void setTime(String time) {
+        this.time = time;
+    }
 
     public String getDate() {
         return date;

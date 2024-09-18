@@ -1,6 +1,7 @@
 package com.example.overwork.service;
 
 import com.example.overwork.entiry.ApplyRecord;
+import com.example.overwork.repository.ApplyRepository;
 import com.example.overwork.repository.MemberRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,11 +17,11 @@ import java.util.Optional;
 @Transactional
 public class ApplyService {
     @Autowired
-    private final MemberRepository memberRepository;
+    private final ApplyRepository applyRepository;
     private Long id;
 
-    public ApplyService(MemberRepository memberRepository) {
-        this.memberRepository = memberRepository;
+    public ApplyService(ApplyRepository applyRepository) {
+        this.applyRepository = applyRepository;
     }
 
     public Long saveData(Long id) {
@@ -29,28 +30,24 @@ public class ApplyService {
     }
 
     public Long makeRecord(ApplyRecord applyRecord) {
-        memberRepository.recordApplyment(applyRecord);
+        applyRepository.recordApplyment(applyRecord);
         return applyRecord.getId();
     }
 
     public List<ApplyRecord> findApplyList() {
-        return memberRepository.allRecordApplymentList();
+        return applyRepository.allRecordApplymentList();
     }
 
     public List<ApplyRecord> findTodayApplyment() {
         DateFormat date = new SimpleDateFormat("yyyy-MM-dd");
         String nowDate = date.format(new Date());
 
-        List<ApplyRecord> todayApplymentList = memberRepository.findTodayApplymentList(nowDate);
+        List<ApplyRecord> todayApplymentList = applyRepository.findTodayApplymentList(nowDate);
         return todayApplymentList;
     }
 
     public Optional<ApplyRecord> updateStart(String date) {
-        memberRepository.updateStart(date);
+        applyRepository.updateStart(date);
         return null;
-    }
-    public Long findID(String date) {
-        this.id = memberRepository.findID(date);
-        return this.id;
     }
 }

@@ -2,11 +2,10 @@ package com.example.overwork.repository;
 
 import com.example.overwork.entiry.ApplyRecord;
 import jakarta.persistence.EntityManager;
+import org.springframework.data.repository.query.Param;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 public class JpaApplyRepository implements ApplyRepository {
     private final EntityManager em;
@@ -14,6 +13,7 @@ public class JpaApplyRepository implements ApplyRepository {
     public JpaApplyRepository(EntityManager em) {
         this.em = em;
     }
+
 
     @Override
     public ApplyRecord recordApplyment(ApplyRecord applyRecord) {
@@ -27,9 +27,19 @@ public class JpaApplyRepository implements ApplyRepository {
     }
 
     @Override
-    public List<ApplyRecord> findTodayApplymentList() {
-        DateFormat date = new SimpleDateFormat("yyyy-MM-dd");
-        return em.createQuery("select m from ApplyRecord m where m.date = " + date.format(new Date()), ApplyRecord.class).getResultList();
+    public List<ApplyRecord> findTodayApplymentList(String nowDate) {
+        return em.createQuery("select m from ApplyRecord m where m.date =: nowDate", ApplyRecord.class)
+                .setParameter("nowDate", nowDate).getResultList();
     }
 
+    @Override
+    public Optional<ApplyRecord> updateStart(@Param(value="date") String nowDate) {
+        Long id = em.createQuery("select m from ApplyRecord m where m.date =: nowDate", ApplyRecord.class)
+                .setParameter("nowDate", nowDate).getResultList().stream().findFirst().get().getId();
+//        System.out.println(id);
+        ApplyRecord applyRecord = em.find(ApplyRecord.class, id);
+        applyRecord.setStart(true);
+
+        return null;
+    }
 }

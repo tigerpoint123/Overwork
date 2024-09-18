@@ -41,38 +41,4 @@ public class JpaMemberRepository implements MemberRepository {
         return em.createQuery("select m from Member m", Member.class).getResultList(); //JPQL
     }
 
-    @Override
-    public ApplyRecord recordApplyment(ApplyRecord applyRecord) {
-        em.persist(applyRecord);
-        return applyRecord;
-    }
-
-    @Override
-    public List<ApplyRecord> allRecordApplymentList() {
-        return em.createQuery("select m from ApplyRecord m", ApplyRecord.class).getResultList();
-    }
-
-    @Override
-    public List<ApplyRecord> findTodayApplymentList(String nowDate) {
-        return em.createQuery("select m from ApplyRecord m where m.date =: nowDate", ApplyRecord.class)
-                .setParameter("nowDate", nowDate).getResultList();
-    }
-
-    @Override
-//    @Query("update ApplyRecord m set m.start = true where m.id =: id and m.date =: date")
-    public Optional<ApplyRecord> updateStart(@Param(value="date") String nowDate) {
-        Long id = em.createQuery("select m from ApplyRecord m where m.date =: nowDate", ApplyRecord.class)
-                .setParameter("nowDate", nowDate).getResultList().stream().findFirst().get().getId();
-//        System.out.println(id);
-        ApplyRecord applyRecord = em.find(ApplyRecord.class, id);
-        applyRecord.setStart(true);
-
-        return null;
-    }
-
-    @Override
-    public Long findID(String date) {
-        return em.createQuery("select m from ApplyRecord m where m.date =: nowDate", ApplyRecord.class)
-                .setParameter("nowDate", date).getResultList().stream().findFirst().get().getId();
-    }
 }

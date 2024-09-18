@@ -80,7 +80,7 @@ public class UserController {
         Member member = loginService.saveData();
         DateFormat date = new SimpleDateFormat("yyyy-MM-dd");
         String nowDate = date.format(new Date());
-//        applyService.updateStart(nowDate);
+        applyService.updateStart(nowDate);
 
         model.addAttribute("member", member);
         return "afterLoginOvertime";

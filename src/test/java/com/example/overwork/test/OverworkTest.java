@@ -3,7 +3,6 @@ package com.example.overwork.test;
 import com.example.overwork.entiry.ApplyRecord;
 import com.example.overwork.entiry.Grade;
 import com.example.overwork.entiry.Member;
-import com.example.overwork.service.UpdateService;
 import com.example.overwork.service.ApplyService;
 import com.example.overwork.service.LoginService;
 import com.example.overwork.service.MemberService;
@@ -53,8 +52,6 @@ class OverworkTest {
     LoginService loginService;
     @Autowired
     ApplyService applyService;
-    @Autowired
-    UpdateService updateService;
 
     @Test
 //    @Commit // 테스트 끝나고 데이터를 지우지 않는 것
@@ -117,14 +114,6 @@ class OverworkTest {
     void 초과근무시작하기() {
         DateFormat date = new SimpleDateFormat("yyyy-MM-dd");
         String nowDate = date.format(new Date());
-//        Long id = applyService.findID(nowDate);
         applyService.updateStart(nowDate);
     }
-
-//    @Test
-//    void 아이디먼저() {
-//        DateFormat date = new SimpleDateFormat("yyyy-MM-dd");
-//        String nowDate = date.format(new Date());
-//        System.out.println(applyService.findID(nowDate));
-//    }
 }

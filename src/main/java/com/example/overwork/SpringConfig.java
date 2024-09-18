@@ -1,6 +1,5 @@
 package com.example.overwork;
 
-import com.example.overwork.repository.ApplyRepository;
 import com.example.overwork.repository.JpaMemberRepository;
 import com.example.overwork.repository.MemberRepository;
 import com.example.overwork.service.ApplyService;

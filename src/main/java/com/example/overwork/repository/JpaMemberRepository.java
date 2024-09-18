@@ -4,11 +4,13 @@ import com.example.overwork.entiry.ApplyRecord;
 import com.example.overwork.entiry.Member;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.TypedQuery;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 import java.util.Optional;
 
-public class JpaMemberRepository implements MemberRepository{
+public class JpaMemberRepository implements MemberRepository {
 
     private final EntityManager em;
 
@@ -57,23 +59,20 @@ public class JpaMemberRepository implements MemberRepository{
     }
 
     @Override
-    public Optional<ApplyRecord> updateStart(String nowDate) {
+//    @Query("update ApplyRecord m set m.start = true where m.id =: id and m.date =: date")
+    public Optional<ApplyRecord> updateStart(@Param(value="date") String nowDate) {
+        Long id = em.createQuery("select m from ApplyRecord m where m.date =: nowDate", ApplyRecord.class)
+                .setParameter("nowDate", nowDate).getResultList().stream().findFirst().get().getId();
+//        System.out.println(id);
+        ApplyRecord applyRecord = em.find(ApplyRecord.class, id);
+        applyRecord.setStart(true);
 
-
-//        ApplyRecord applyRecord = em.find(ApplyRecord.class, id);
-//        applyRecord.setStart(true);
         return null;
     }
 
     @Override
-    public TypedQuery<ApplyRecord> findId() {
-        TypedQuery<ApplyRecord> query = em.createQuery("select m.id from ApplyRecord m", ApplyRecord.class);
-        return query;
+    public Long findID(String date) {
+        return em.createQuery("select m from ApplyRecord m where m.date =: nowDate", ApplyRecord.class)
+                .setParameter("nowDate", date).getResultList().stream().findFirst().get().getId();
     }
-
-    @Override
-    public List<ApplyInfoMapping> letsFindId() {
-        return List.of();
-    }
-
 }

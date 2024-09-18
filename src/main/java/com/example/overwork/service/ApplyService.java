@@ -1,9 +1,7 @@
 package com.example.overwork.service;
 
 import com.example.overwork.entiry.ApplyRecord;
-import com.example.overwork.repository.ApplyInfoMapping;
 import com.example.overwork.repository.MemberRepository;
-import jakarta.persistence.TypedQuery;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -13,22 +11,26 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
-import java.util.SequencedCollection;
-import java.util.function.IntPredicate;
 
 @Service
 @Transactional
 public class ApplyService {
     @Autowired
     private final MemberRepository memberRepository;
+    private Long id;
 
     public ApplyService(MemberRepository memberRepository) {
         this.memberRepository = memberRepository;
     }
 
-    public IntPredicate makeRecord(ApplyRecord applyRecord) {
+    public Long saveData(Long id) {
+        this.id=id;
+        return this.id;
+    }
+
+    public Long makeRecord(ApplyRecord applyRecord) {
         memberRepository.recordApplyment(applyRecord);
-        return null;
+        return applyRecord.getId();
     }
 
     public List<ApplyRecord> findApplyList() {
@@ -47,8 +49,8 @@ public class ApplyService {
         memberRepository.updateStart(date);
         return null;
     }
-
-    public SequencedCollection<ApplyInfoMapping> findID() {
-        return memberRepository.letsFindId();
+    public Long findID(String date) {
+        this.id = memberRepository.findID(date);
+        return this.id;
     }
 }

@@ -3,11 +3,10 @@ package com.example.overwork.test;
 import com.example.overwork.entiry.ApplyRecord;
 import com.example.overwork.entiry.Grade;
 import com.example.overwork.entiry.Member;
+import com.example.overwork.service.UpdateService;
 import com.example.overwork.service.ApplyService;
 import com.example.overwork.service.LoginService;
 import com.example.overwork.service.MemberService;
-import org.assertj.core.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -17,8 +16,6 @@ import org.springframework.transaction.annotation.Transactional;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.List;
-import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.*;
 
@@ -56,6 +53,8 @@ class OverworkTest {
     LoginService loginService;
     @Autowired
     ApplyService applyService;
+    @Autowired
+    UpdateService updateService;
 
     @Test
 //    @Commit // 테스트 끝나고 데이터를 지우지 않는 것
@@ -97,29 +96,35 @@ class OverworkTest {
         //given
         Member member = new Member();
         ApplyRecord applyRecord = new ApplyRecord();
-        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
-        String nowDate = dateFormat.format(new Date());
+        DateFormat date = new SimpleDateFormat("yyyy-MM-dd");
+        String nowDate = date.format(new Date());
+        DateFormat time = new SimpleDateFormat("HH:mm");
+        String nowTime = time.format(new Date());
 
         //when
         applyRecord.setUsername("user");
         applyRecord.setDate(nowDate);
+        applyRecord.setTime(nowTime);
         applyRecord.setContent("야근이요");
         applyRecord.setStart(false);
+        Long id = applyService.makeRecord(applyRecord);
 
         //then
-        assertThat(applyService.makeRecord(applyRecord));
     }
 
     @Test
+    @Commit
     void 초과근무시작하기() {
         DateFormat date = new SimpleDateFormat("yyyy-MM-dd");
         String nowDate = date.format(new Date());
+//        Long id = applyService.findID(nowDate);
         applyService.updateStart(nowDate);
-
     }
 
-    @Test
-    void findId() {
-        System.out.println(applyService.findID());
-    }
+//    @Test
+//    void 아이디먼저() {
+//        DateFormat date = new SimpleDateFormat("yyyy-MM-dd");
+//        String nowDate = date.format(new Date());
+//        System.out.println(applyService.findID(nowDate));
+//    }
 }

@@ -60,7 +60,9 @@ public class UserController {
         applyRecord.setContent(content);
         applyRecord.setUsername(member.getUsername());
 
-        applyService.makeRecord(applyRecord);
+        Long id = applyService.makeRecord(applyRecord);
+        System.out.println(id);
+        applyService.saveData(id);
         model.addAttribute("member", member);
 
         return "afterLoginOvertime";
@@ -78,7 +80,7 @@ public class UserController {
         Member member = loginService.saveData();
         DateFormat date = new SimpleDateFormat("yyyy-MM-dd");
         String nowDate = date.format(new Date());
-        applyService.updateStart(nowDate);
+//        applyService.updateStart(nowDate);
 
         model.addAttribute("member", member);
         return "afterLoginOvertime";

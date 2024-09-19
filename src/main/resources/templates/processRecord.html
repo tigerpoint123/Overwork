@@ -2,43 +2,55 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>진행 목록</title>
-    <link rel="stylesheet" href="../static/style.css" th:href="@{style.css}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>나의 멋진 홈페이지</title>
+    <link rel="stylesheet" href="../../static/style.css" th:href="@{style.css}">
 
+    <link rel="stylesheet" href="../../static/applyList.css" th:href="@{applyList.css}">
 </head>
 <body>
 <header>
     <h1>나의 멋진 홈페이지</h1>
 </header>
+
 <nav>
     <a href="#home">홈</a>
     <a href="#about">소개</a>
     <a href="#services">서비스</a>
     <a href="#contact">연락처</a>
 </nav>
+
 <main>
-    <h2>환영합니다!</h2> <h2 th:text></h2>
-    <form method="post" action="/overworkStart">
-        <ul th:each="list : ${lists}">
-            <td>아이디 =  <span th:text="${list.id}"></span></td>
-            <td>신청내용 =  <span th:text="${list.content}"></span></td>
-            <td>신청날짜 =  <span th:text="${list.date}"></span></td>
-            <td>신청시간 =  <span th:text="${list.time}"></span></td>
-            <td>사용자 =  <span th:text="${list.username}"></span></td>
-            <td>시작여부 =  <span th:text="${list.start}"></span></td>
-        </ul>
-        <button type="submit">시작</button>
-        <button type="button" onclick="btn_click(cancel)"> 취소</button>
-    </form>
+    <table>
+        <thead>
+        <tr>
+            <th>번호</th>
+            <th>내용</th>
+            <th>날짜</th>
+            <th>신청시간</th>
+            <th>작성자</th>
+            <th>시작여부</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="list : ${lists}">
+            <td th:text="${list.id}"></td>
+            <td th:text="${list.content}"></td>
+            <td th:text="${list.startTime}"></td>
+            <td th:text="${list.endTime}"></td>
+            <td th:text="${list.approver}"></td>
+            <td th:text="${list.admin}"></td>
+        </tr>
+        </tbody>
+    </table>
 
 </main>
-<script>
-    function btn_click(str){
-        if(str=="cancel"){
-            frm1.action="/afterLoginOvertime";
-        }
-    }
-</script>
 
+<footer>
+    <p>&copy; 2024 나의 멋진 홈페이지. 모든 권리 보유.</p>
+</footer>
 </body>
 </html>
+
+
+

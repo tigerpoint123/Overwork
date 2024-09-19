@@ -33,13 +33,32 @@ public class JpaApplyRepository implements ApplyRepository {
     }
 
     @Override
-    public Optional<ApplyRecord> updateStart(@Param(value="date") String nowDate) {
+    public Optional<ApplyRecord> updateStart(String date, String time) {
         Long id = em.createQuery("select m from ApplyRecord m where m.date =: nowDate", ApplyRecord.class)
-                .setParameter("nowDate", nowDate).getResultList().stream().findFirst().get().getId();
-//        System.out.println(id);
+                .setParameter("nowDate", date).getResultList().stream().findFirst().get().getId();
         ApplyRecord applyRecord = em.find(ApplyRecord.class, id);
         applyRecord.setStart(true);
+        applyRecord.setStartTime(time);
+        applyRecord.setDone("진행중");
 
-        return null;
+        return Optional.of(applyRecord);
+    }
+
+    @Override
+    public boolean startOrNot(String date) {
+        boolean son = em.createQuery("select m from ApplyRecord m where m.date =: nowDate", ApplyRecord.class)
+                .setParameter("nowDate", date).getResultList().stream().findFirst().get().isStart();
+        return son;
+    }
+
+    @Override
+    public Optional<ApplyRecord> updateEnd(String nowDate, String nowTime) {
+        Long id = em.createQuery("select m from ApplyRecord m where m.date =: nowDate and m.start = true", ApplyRecord.class)
+                .setParameter("nowDate", nowDate).getResultList().stream().findFirst().get().getId();
+        ApplyRecord applyRecord = em.find(ApplyRecord.class, id);
+        applyRecord.setEndTime(nowTime);
+        applyRecord.setDone("진행완료");
+
+        return Optional.empty();
     }
 }

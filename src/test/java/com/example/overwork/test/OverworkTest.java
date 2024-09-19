@@ -114,6 +114,9 @@ class OverworkTest {
     void 초과근무시작하기() {
         DateFormat date = new SimpleDateFormat("yyyy-MM-dd");
         String nowDate = date.format(new Date());
-        applyService.updateStart(nowDate);
+        DateFormat time = new SimpleDateFormat("HH:mm");
+        String nowTime = time.format(new Date());
+
+        applyService.updateStart(nowDate, nowTime);
     }
 }

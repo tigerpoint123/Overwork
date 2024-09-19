@@ -27,13 +27,17 @@ public class UserController {
         this.applyService = applyService;
     }
 
+    private void addUserName(Model model) {
+        Member member = loginService.saveData();
+        model.addAttribute("member", member);
+    }
+
     @GetMapping("/apply")
     public String apply(Model model) {
-        Member member = loginService.saveData();
+        addUserName(model);
 
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
         String nowDate = dateFormat.format(new Date());
-        model.addAttribute("username", member.getUsername());
         model.addAttribute("date", nowDate);
 
         return "/apply";
@@ -41,9 +45,15 @@ public class UserController {
 
     @GetMapping("start_end")
     public String startEnd(Model model) {
+        addUserName(model);
+
         List<ApplyRecord> list = applyService.findTodayApplyment();
         model.addAttribute("lists", list);
+        DateFormat date = new SimpleDateFormat("yyyy-MM-dd");
+        String nowDate = date.format(new Date());
 
+        boolean son = applyService.startOrNot(nowDate);
+        model.addAttribute("start", son);
         return "start_end";
     }
 
@@ -76,12 +86,34 @@ public class UserController {
 
     @PostMapping("/overworkStart")
     public String overworkStart(Model model) {
-        Member member = loginService.saveData();
         DateFormat date = new SimpleDateFormat("yyyy-MM-dd");
         String nowDate = date.format(new Date());
-        applyService.updateStart(nowDate);
+        DateFormat time = new SimpleDateFormat("HH:mm");
+        String nowTime = time.format(new Date());
+        applyService.updateStart(nowDate, nowTime);
 
-        model.addAttribute("member", member);
+        return "afterLoginOvertime";
+    }
+
+    @GetMapping("/processRecord")
+    public String processRecord(Model model) {
+        addUserName(model);
+
+        List<ApplyRecord> list = applyService.findProgressList();
+        model.addAttribute("lists", list);
+        return "processRecord";
+    }
+
+    @PostMapping("overworkEnd")
+    public String overworkEnd(Model model) {
+        addUserName(model);
+
+        DateFormat date = new SimpleDateFormat("yyyy-MM-dd");
+        String nowDate = date.format(new Date());
+        DateFormat time = new SimpleDateFormat("HH:mm");
+        String nowTime = time.format(new Date());
+        applyService.updateEnd(nowDate, nowTime);
+
         return "afterLoginOvertime";
     }
 }

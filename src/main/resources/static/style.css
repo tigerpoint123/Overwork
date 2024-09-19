@@ -138,3 +138,34 @@ li {
     text-align: center;
     border: 1px solid #ccc;
 }
+
+/* 왼쪽 목록 스타일 */
+.sidebar {
+    width: 200px; /* 너비를 조정해 기능 목록이 더 잘 보이도록 */
+    background-color: #f4f4f4;
+    padding: 20px;
+    box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+    height: 100vh; /* 전체 화면 높이 */
+    box-sizing: border-box;
+}
+
+.sidebar ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0; /* 마진을 0으로 설정해 목록이 더 꽉 차게 보이도록 */
+}
+
+.sidebar ul li {
+    padding: 15px 0; /* 기능들 사이의 간격을 늘려 보기 좋게 */
+    border-bottom: 1px solid #ddd; /* 각 기능 사이에 구분선을 추가 */
+}
+
+.sidebar ul li a {
+    text-decoration: none;
+    color: #333;
+    display: block; /* a 태그를 블록 요소로 설정해 세로 정렬 */
+}
+
+.sidebar ul li a:hover {
+    background-color: #ddd; /* 기능 항목에 마우스를 올렸을 때 색상 변경 */
+}

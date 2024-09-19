@@ -2,7 +2,6 @@ package com.example.overwork.service;
 
 import com.example.overwork.entiry.ApplyRecord;
 import com.example.overwork.repository.ApplyRepository;
-import com.example.overwork.repository.MemberRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -46,8 +45,21 @@ public class ApplyService {
         return todayApplymentList;
     }
 
-    public Optional<ApplyRecord> updateStart(String date) {
-        applyRepository.updateStart(date);
+    public Optional<ApplyRecord> updateStart(String date, String time) {
+        applyRepository.updateStart(date, time);
+        return null;
+    }
+
+    public List<ApplyRecord> findProgressList() {
+        return applyRepository.allRecordApplymentList();
+    }
+
+    public boolean startOrNot(String nowDate) {
+        return applyRepository.startOrNot(nowDate);
+    }
+
+    public Optional<ApplyRecord> updateEnd(String nowDate, String nowTime) {
+        applyRepository.updateEnd(nowDate, nowTime);
         return null;
     }
 }

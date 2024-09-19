@@ -27,9 +27,18 @@
             <td>사용자 =  <span th:text="${list.username}"></span></td>
             <td>시작여부 =  <span th:text="${list.start}"></span></td>
         </ul>
-        <button type="submit">시작</button>
-        <button type="submit">취소</button>
+        <div th:if="${start == false}">
+            <button type="submit">시작</button>
+            <button type="submit">취소</button>
+        </div>
     </form>
+    <form method="post" action="/overworkEnd">
+        <div th:if="${start == true}">
+            <button type="submit">종료</button>
+            <button type="submit">취소</button>
+        </div>
+    </form>
+
 
 </main>
 

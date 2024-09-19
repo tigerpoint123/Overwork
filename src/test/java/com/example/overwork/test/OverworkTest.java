@@ -102,7 +102,7 @@ class OverworkTest {
         applyRecord.setUsername("user");
         applyRecord.setDate(nowDate);
         applyRecord.setTime(nowTime);
-        applyRecord.setContent("야근이요");
+        applyRecord.setContent("면담기록소급");
         applyRecord.setStart(false);
         Long id = applyService.makeRecord(applyRecord);
 
@@ -110,7 +110,7 @@ class OverworkTest {
     }
 
     @Test
-    @Commit
+//    @Commit
     void 초과근무시작하기() {
         DateFormat date = new SimpleDateFormat("yyyy-MM-dd");
         String nowDate = date.format(new Date());

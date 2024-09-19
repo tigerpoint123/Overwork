@@ -61,7 +61,6 @@ public class UserController {
         applyRecord.setUsername(member.getUsername());
 
         Long id = applyService.makeRecord(applyRecord);
-        System.out.println(id);
         applyService.saveData(id);
         model.addAttribute("member", member);
 

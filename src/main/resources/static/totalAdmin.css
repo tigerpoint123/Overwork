@@ -1,0 +1,56 @@
+* {
+    box-sizing: border-box;
+}
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+.profile-container, .extra-container {
+    border: 1px solid #ccc;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin: 10px 0;
+    width: 500px;
+    max-width: 100%;
+}
+.profile-container {
+    display: flex;
+    flex-direction: row;
+}
+.profile-pic {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    border: 2px solid #007bff;
+    margin-right: 20px;
+}
+.profile-info, .extra-info {
+    flex-grow: 1;
+}
+.profile-info h2, .extra-info h2 {
+    margin: 0 0 10px 0;
+    font-size: 24px;
+    color: #333;
+}
+.profile-info p, .extra-info p {
+    margin: 5px 0;
+    color: #555;
+}
+.profile-info .section-title, .extra-info .section-title {
+    margin-top: 15px;
+    font-weight: bold;
+    color: #007bff;
+}
+/* 구분선 추가 */
+.profile-info p:not(:last-child), .extra-info p:not(:last-child) {
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 10px;
+}

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>인적 정보와 추가 정보</title>
+    <link rel="stylesheet" href="../static/totalAdmin.css" th:href="@{totalAdmin.css}">
+    <link rel="stylesheet" href="../static/style.css" th:href="@{style.css}">
+
+</head>
+<header>
+    <h1>나의 멋진 홈페이지</h1>
+</header>
+
+<nav>
+    <a href="/">홈</a>
+    <a href="/webmail">이메일</a>
+    <a href="/overworkMain">초과근무</a>
+    <a href="/totalAdmin">연통</a>
+    <a href="/humanResource/humanResourceMain">국인체</a>
+</nav>
+<body>
+<!-- 첫 번째 박스: 인적 정보 -->
+<div class="profile-container">
+    <img src="person-photo.jpg" alt="Profile Picture" class="profile-pic">
+    <div class="profile-info">
+        <h2>홍길동</h2>
+        <p>나이: 30</p>
+        <p>직업: 웹 개발자</p>
+        <p>이메일: example@example.com</p>
+
+        <p class="section-title">연락처</p>
+        <p>전화번호: 010-1234-5678</p>
+        <p>주소: 서울특별시 강남구 테헤란로</p>
+    </div>
+</div>
+
+<!-- 두 번째 박스: 추가 정보 -->
+<div class="extra-container">
+    <div class="extra-info">
+        <h2>추가 정보</h2>
+        <p>프로젝트: 챗봇 개발</p>
+        <p>경력: 5년</p>
+        <p>언어: 한국어, 영어, 자바스크립트</p>
+
+        <p class="section-title">기타</p>
+        <p>취미: 등산, 음악 감상</p>
+        <p>자격증: 정보처리기사</p>
+    </div>
+</div>
+</body>
+</html>

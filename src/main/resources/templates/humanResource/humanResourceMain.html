@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>인사 관리 시스템</title>
+    <link rel="stylesheet" href="../../static/humanResource.css" th:href="@{humanResource.css}">
+
+</head>
+<body>
+<header>
+    <h1>인사 관리 시스템</h1>
+</header>
+<nav>
+    <a href="/static">홈</a>
+    <a href="/webmail">이메일</a>
+    <a href="/overworkMain">초과근무</a>
+    <a href="/totalAdmin">연통</a>
+    <a href="/humanResource/humanResourceMain">국인체</a>
+</nav>
+
+<main>
+    <h2>직원 목록</h2>
+    <table>
+        <tr>
+            <th>직원 이름</th>
+            <th>직급</th>
+            <th>이메일</th>
+            <th>연락처</th>
+        </tr>
+        <tr>
+            <td>홍길동</td>
+            <td>매니저</td>
+            <td>hong@example.com</td>
+            <td>010-1234-5678</td>
+        </tr>
+        <!-- 더 많은 직원 정보를 여기에 추가할 수 있습니다 -->
+    </table>
+
+    <h2>새 직원 등록</h2>
+    <form action="/add_employee" method="post">
+        <input type="text" name="name" placeholder="직원 이름" required>
+        <input type="text" name="position" placeholder="직급" required>
+        <input type="email" name="email" placeholder="이메일" required>
+        <input type="tel" name="phone" placeholder="연락처" required>
+        <button type="submit">등록</button>
+    </form>
+</main>
+</body>
+</html>

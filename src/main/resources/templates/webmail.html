@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Email Client</title>
+    <link rel="stylesheet" href="../static/webmail.css" th:href="@{webmail.css}">
+</head>
+<body>
+<div class="sidebar">
+    <h2>Email Client</h2>
+    <ul>
+        <li><button onclick="loadInbox()">Inbox</button></li>
+        <li><button onclick="loadSent()">Sent</button></li>
+        <li><button onclick="showCompose()">Compose</button></li>
+    </ul>
+</div>
+
+<div class="main-content">
+    <div class="header">
+        <h1>Email Client</h1>
+    </div>
+    <div class="email-list" id="content">
+        <!-- Content will be dynamically loaded here -->
+    </div>
+</div>
+
+<script>
+    // Show the compose email form
+    function showCompose() {
+        document.getElementById('content').innerHTML = `
+                <div class="compose-email">
+                    <h2>Compose Email</h2>
+                    <form onsubmit="sendEmail(event)">
+                        <input type="email" id="to" placeholder="To" required>
+                        <input type="text" id="subject" placeholder="Subject" required>
+                        <textarea id="message" rows="5" placeholder="Message" required></textarea>
+                        <button type="submit">Send</button>
+                    </form>
+                </div>
+            `;
+    }
+
+    // Send the email (this is a placeholder for the real send functionality)
+    function sendEmail(event) {
+        event.preventDefault();
+        alert('Email sent!');
+        loadInbox();
+    }
+
+    // Load inbox emails (this is a placeholder for the real load functionality)
+    function loadInbox() {
+        document.getElementById('content').innerHTML = `
+                <h2>Inbox</h2>
+                <div class="email-item">Sample Email 1</div>
+                <div class="email-item">Sample Email 2</div>
+                <div class="email-item">Sample Email 3</div>
+            `;
+    }
+
+    // Load sent emails (this is a placeholder for the real load functionality)
+    function loadSent() {
+        document.getElementById('content').innerHTML = `
+                <h2>Sent Emails</h2>
+                <div class="email-item">Sample Sent Email 1</div>
+                <div class="email-item">Sample Sent Email 2</div>
+            `;
+    }
+
+    // Load the inbox by default
+    loadInbox();
+</script>
+</body>
+</html>

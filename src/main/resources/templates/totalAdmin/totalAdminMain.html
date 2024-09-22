@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>연통</title>
+    <link rel="stylesheet" href="../../static/totalAdmin.css" th:href="@{totalAdmin.css}">
+
+</head>
+<body>
+<header>
+    <h1>연통</h1>
+</header>
+<nav>
+    <a href="/">홈</a>
+    <a href="/webmail">이메일</a>
+    <a href="/overworkMain">초과근무</a>
+    <a href="/totalAdmin">연통</a>
+    <a href="/humanResource/humanResourceMain">국인체</a>
+    <a href="/map">지도</a>
+</nav>
+
+<main class="totalInfo">
+    <tr >
+        <th>#</th>
+        <th>이름</th>
+        <th>비밀번호</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <tr th:each="member : ${members}">
+        <td th:text = "${member.id}"></td>
+        <td th:text = "${member.username}"></td>
+        <td th:text = "${member.password}"></td>
+    </tr>
+    </tbody>
+
+</main>
+
+<footer>
+    <p>&copy; 2024 나의 멋진 홈페이지. 모든 권리 보유.</p>
+</footer>
+
+</body>
+<!--<script src="overtime.js"></script>-->
+
+</html>

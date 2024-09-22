@@ -116,6 +116,12 @@ public class UserController {
 
         return "afterLoginOvertime";
     }
+
+    @GetMapping("/map")
+    public String map() {
+
+        return "map";
+    }
 }
 
 

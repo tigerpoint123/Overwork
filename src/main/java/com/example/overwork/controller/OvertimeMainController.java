@@ -23,12 +23,7 @@ public class OvertimeMainController {
         this.loginService = loginService;
     }
 
-    @GetMapping("/")
-    public String test(Model model) {
-        return "overtimeMain";
-    }
-
-    @PostMapping("/login") 
+    @PostMapping("/login")
     public String login(@RequestParam("username") String username,
                         @RequestParam("password") String password, Model model, Member member) {
         member.setUsername(username);

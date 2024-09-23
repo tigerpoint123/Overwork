@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>연통</title>
     <link rel="stylesheet" href="../../static/totalAdmin.css" th:href="@{totalAdmin.css}">
-
 </head>
+
 <body>
 <header>
     <h1>연통</h1>
@@ -15,7 +15,7 @@
     <a href="/">홈</a>
     <a href="/webmail">이메일</a>
     <a href="/overworkMain">초과근무</a>
-    <a href="/totalAdmin">연통</a>
+    <a href="/totalAdmin/totalAdminMain">연통</a>
     <a href="/humanResource/humanResourceMain">국인체</a>
     <a href="/map">지도</a>
 </nav>
@@ -24,11 +24,13 @@
     <tr >
         <th>#</th>
         <th>이름</th>
-        <th>비밀번호</th>
+        <th>직업</th>
+        <th>경력</th>
+        <th>부서</th>
     </tr>
     </thead>
 
-    <tbody>
+    <tbody >
     <tr th:each="member : ${members}">
         <td th:text = "${member.id}"></td>
         <td th:text = "${member.username}"></td>

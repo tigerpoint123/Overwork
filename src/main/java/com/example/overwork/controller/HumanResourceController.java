@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class HumanResourceController {
 
-    @GetMapping("/humanResource")
+    @GetMapping("/humanResource/humanResourceMain")
     public String humanResource() {
 
         return "humanResource/humanResourceMain";

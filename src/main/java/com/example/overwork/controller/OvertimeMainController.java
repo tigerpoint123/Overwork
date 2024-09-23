@@ -15,34 +15,10 @@ import java.util.List;
 @Controller
 public class OvertimeMainController {
     private final MemberService memberService;
-    private final LoginService loginService;
 
     @Autowired
-    public OvertimeMainController(MemberService memberService, LoginService loginService) {
+    public OvertimeMainController(MemberService memberService) {
         this.memberService = memberService;
-        this.loginService = loginService;
-    }
-
-    @PostMapping("/login")
-    public String login(@RequestParam("username") String username,
-                        @RequestParam("password") String password, Model model, Member member) {
-        member.setUsername(username);
-        member.setPassword(password);
-
-        if(loginService.checkLogin(member)) {
-            return "afterLoginOvertime";
-        }
-        else return "redirect:/";
-    }
-
-    @PostMapping("/signIn")
-    public String signin(@RequestParam("new-username") String username,
-                         @RequestParam("new-password") String password, Model model, Member member) {
-        member.setUsername(username);
-        member.setPassword(password);
-        memberService.join(member);
-
-        return "redirect:/";
     }
 
     @GetMapping("/members")

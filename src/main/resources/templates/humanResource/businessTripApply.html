@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>휴가 신청서</title>
+    <title>출장 신청서</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -33,21 +33,21 @@
             display: block;
             width: 100%;
             padding: 10px;
-            background-color: #28a745;
+            background-color: #007bff;
             color: white;
             border: none;
             border-radius: 4px;
             cursor: pointer;
         }
         button:hover {
-            background-color: #218838;
+            background-color: #0056b3;
         }
     </style>
 </head>
 <body>
 
 <div class="container">
-    <h1>휴가 신청서</h1>
+    <h1>출장 신청서</h1>
     <form>
         <label for="name">이름:</label>
         <input type="text" id="name" name="name" required>
@@ -55,14 +55,17 @@
         <label for="dept">부서:</label>
         <input type="text" id="dept" name="dept" required>
 
-        <label for="start_date">휴가 시작일:</label>
+        <label for="destination">출장지:</label>
+        <input type="text" id="destination" name="destination" required>
+
+        <label for="start_date">출장 시작일:</label>
         <input type="date" id="start_date" name="start_date" required>
 
-        <label for="end_date">휴가 종료일:</label>
+        <label for="end_date">출장 종료일:</label>
         <input type="date" id="end_date" name="end_date" required>
 
-        <label for="reason">휴가 사유:</label>
-        <textarea id="reason" name="reason" rows="4" required></textarea>
+        <label for="purpose">출장 목적:</label>
+        <textarea id="purpose" name="purpose" rows="4" required></textarea>
 
         <button type="submit">신청하기</button>
     </form>

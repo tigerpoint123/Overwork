@@ -1,9 +1,6 @@
 package com.example.overwork;
 
-import com.example.overwork.repository.ApplyRepository;
-import com.example.overwork.repository.JpaApplyRepository;
-import com.example.overwork.repository.JpaMemberRepository;
-import com.example.overwork.repository.MemberRepository;
+import com.example.overwork.repository.*;
 import com.example.overwork.service.ApplyService;
 import com.example.overwork.service.LoginService;
 import com.example.overwork.service.MemberService;
@@ -42,4 +39,7 @@ public class SpringConfig {
     public ApplyRepository applyRepository() {
         return new JpaApplyRepository(em);
     }
+
+    @Bean
+    public TotalAdminRepository totalAdminRepository() {return new JpaTotalAdminRepository(em);}
 }

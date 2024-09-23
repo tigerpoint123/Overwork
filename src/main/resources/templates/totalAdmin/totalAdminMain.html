@@ -21,23 +21,30 @@
 </nav>
 
 <main class="totalInfo">
-    <tr >
-        <th>#</th>
-        <th>이름</th>
-        <th>직업</th>
-        <th>경력</th>
-        <th>부서</th>
-    </tr>
-    </thead>
-
-    <tbody >
-    <tr th:each="member : ${members}">
-        <td th:text = "${member.id}"></td>
-        <td th:text = "${member.username}"></td>
-        <td th:text = "${member.password}"></td>
-    </tr>
-    </tbody>
-
+    <form method="get" action="/totalInfoAddForm">
+        <table>
+            <thead>
+                <tr >
+                    <th>#</th>
+                    <th>이름</th>
+                    <th>직업</th>
+                    <th>경력</th>
+                    <th>부서</th>
+                </tr>
+            </thead>
+            <tbody th:each="list : ${lists}">
+                <tr onclick="location.href=`/personalDetail`">
+                    <td></td>
+                    <td th:text = "${list.getName()}"></td>
+                    <td th:text = "${list.getJob()}"></td>
+                    <td th:text = "${list.getCarrer()}"></td>
+                    <td th:text = "${list.getDepartment()}"></td>
+                </tr>
+                <button type="submit" >추가하기</button>
+                <a href="/personalDetail"> 얘는 되냐</a>
+            </tbody>
+        </table>
+    </form>
 </main>
 
 <footer>

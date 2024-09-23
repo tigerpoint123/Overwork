@@ -3,7 +3,7 @@ package com.example.overwork.entiry;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "ApplyRecord")
+@Table(name = "HumanResource")
 public class HumanResource {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

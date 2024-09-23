@@ -14,10 +14,9 @@ public class Member {
     @Column(name="password")
     private String password;
 
-    @Column(name="grade")
-    private Grade grade;
+    private String grade;
 
-    public Member(String username, String password, Long id, Grade grade) {
+    public Member(String username, String password, Long id, String grade) {
         this.username = username;
         this.password = password;
         this.id = id;
@@ -54,12 +53,11 @@ public class Member {
         this.id = id;
     }
 
-    public Grade getGrade() {
+    public String getGrade() {
         return grade;
     }
 
-    public void setGrade(Grade grade) {
+    public void setGrade(String grade) {
         this.grade = grade;
     }
-
 }

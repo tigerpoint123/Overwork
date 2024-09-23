@@ -10,12 +10,6 @@
 <header>
     <h1>개인 연통</h1>
 </header>
-<!--<script>-->
-<!--    $(function (){-->
-<!--        $('navbar').load("header.html");-->
-<!--    })-->
-<!--</script>-->
-<!--{% include 'header.html'%}-->
 <nav id="navbar">
     <a href="/">홈</a>
     <a href="/webmail">이메일</a>
@@ -25,39 +19,41 @@
     <a href="/map">지도</a>
 </nav>
 
-<main th:each="totalAdmin : ${members}">
-    <!-- 첫 번째 박스: 인적 정보 -->
-    <div class="profile-container">
-        <img src="../../static/img/faceImg.jpg" alt="Profile Picture" class="profile-pic">
-        <div class="profile-info" >
-            <h3 id = "name" th:text = "${member.username}">이름 : 홍길동</h3>
-            <p id="age" th:text = "${member.username}">나이: 30</p>
-            <p id="job" th:text = "${member.username}" >직업: 개발자</p>
-            <p id="jobDetail" th:text = "${member.username}" >직책 : 백엔드 개발자</p>
-            <p id="email" th:text = "${member.username}">이메일: example@example.com</p>
 
-            <p class="section-title" >연락처</p>
-            <p id="phoneNum" th:text = "${member.username}">전화번호: 010-1234-5678</p>
-            <p id="address" th:text = "${member.username}">주소: 서울특별시 강남구 테헤란로</p>
-        </div>
-    </div>
 
-    <!-- 두 번째 박스: 추가 정보 -->
-    <div class="extra-container">
-        <div class="extra-info">
-            <h2>추가 정보</h2>
-            <p id="" th:text = "${member.username}">프로젝트: 챗봇 개발</p>
-            <p id="carrer" th:text = "${member.username}">경력: 5년</p>
-            <p id="language" th:text = "${member.username}">언어: 한국어, 영어, 자바스크립트</p>
+<!--<main th:each="totalAdmin : ${members}">-->
+<!--    &lt;!&ndash; 첫 번째 박스: 인적 정보 &ndash;&gt;-->
+<!--    <div class="profile-container">-->
+<!--        <img src="../../static/img/faceImg.jpg" alt="Profile Picture" class="profile-pic">-->
+<!--        <div class="profile-info" >-->
+<!--            <h3 id = "name" th:text = "${member.username}">이름 : 홍길동</h3>-->
+<!--            <p id="age" th:text = "${member.username}">나이: 30</p>-->
+<!--            <p id="job" th:text = "${member.username}" >직업: 개발자</p>-->
+<!--            <p id="jobDetail" th:text = "${member.username}" >직책 : 백엔드 개발자</p>-->
+<!--            <p id="email" th:text = "${member.username}">이메일: example@example.com</p>-->
 
-            <p class="section-title">기타</p>
-            <p id="hobby" th:text = "${member.username}">취미: 등산, 음악 감상</p>
-            <p id="license" th:text = "${member.username}">자격증: 정보처리기사</p>
-            <p id="university" th:text = "${member.username}">대학교 : 명지대학교</p>
-            <p id="medicine" th:text = "${member.username}">약 복용 여부 : N</p>
-        </div>
-    </div>
-</main>
+<!--            <p class="section-title" >연락처</p>-->
+<!--            <p id="phoneNum" th:text = "${member.username}">전화번호: 010-1234-5678</p>-->
+<!--            <p id="address" th:text = "${member.username}">주소: 서울특별시 강남구 테헤란로</p>-->
+<!--        </div>-->
+<!--    </div>-->
+
+<!--    &lt;!&ndash; 두 번째 박스: 추가 정보 &ndash;&gt;-->
+<!--    <div class="extra-container">-->
+<!--        <div class="extra-info">-->
+<!--            <h2>추가 정보</h2>-->
+<!--            <p id="" th:text = "${member.username}">프로젝트: 챗봇 개발</p>-->
+<!--            <p id="carrer" th:text = "${member.username}">경력: 5년</p>-->
+<!--            <p id="language" th:text = "${member.username}">언어: 한국어, 영어, 자바스크립트</p>-->
+
+<!--            <p class="section-title">기타</p>-->
+<!--            <p id="hobby" th:text = "${member.username}">취미: 등산, 음악 감상</p>-->
+<!--            <p id="license" th:text = "${member.username}">자격증: 정보처리기사</p>-->
+<!--            <p id="university" th:text = "${member.username}">대학교 : 명지대학교</p>-->
+<!--            <p id="medicine" th:text = "${member.username}">약 복용 여부 : N</p>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</main>-->
 
 <footer>
     <p>&copy; 2024 나의 멋진 홈페이지. 모든 권리 보유.</p>

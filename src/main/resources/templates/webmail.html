@@ -25,28 +25,15 @@
     <p>여기에 홈페이지 내용을 입력하세요.</p>
 
     <div class="login-box">
-        <h3>로그인</h3>
-        <form action="/login"  id="login-form" method="post">
-            <label for="username">아이디</label>
-            <input type="text" id="username" name="username" required>
+        <h3>웹메일</h3>
+        <form action="/mail" method="post">
+<!--            <label for="username">아이디</label>-->
+<!--            <input type="text" id="username" name="username" required>-->
 
-            <label for="password">비밀번호</label>
-            <input type="password" id="password" name="password" required>
+<!--            <label for="password">비밀번호</label>-->
+<!--            <input type="password" id="password" name="password" required>-->
 
-            <button type="submit">로그인</button>
-        </form>
-    </div>
-    <a href="/members">회원 목록</a>
-    <div class="signup-box">
-        <h3>회원가입</h3>
-        <form action="/signIn" method="post">
-            <label for="new-username">아이디</label>
-            <input type="text" id="new-username" name="new-username" required>
-
-            <label for="new-password">비밀번호</label>
-            <input type="password" id="new-password" name="new-password" required>
-
-            <button type="submit">회원가입</button>
+            <button type="submit">발송</button>
         </form>
     </div>
 </main>
@@ -58,68 +45,68 @@
 </body>
 
 <body>
-<div class="sidebar">
-    <h2>Email Client</h2>
-    <ul>
-        <li><button onclick="loadInbox()">Inbox</button></li>
-        <li><button onclick="loadSent()">Sent</button></li>
-        <li><button onclick="showCompose()">Compose</button></li>
-    </ul>
-</div>
+<!--<div class="sidebar">-->
+<!--    <h2>Email Client</h2>-->
+<!--    <ul>-->
+<!--        <li><button onclick="loadInbox()">Inbox</button></li>-->
+<!--        <li><button onclick="loadSent()">Sent</button></li>-->
+<!--        <li><button onclick="showCompose()">Compose</button></li>-->
+<!--    </ul>-->
+<!--</div>-->
 
-<div class="main-content">
-    <div class="header">
-        <h1>Email Client</h1>
-    </div>
-    <div class="email-list" id="content">
-        <!-- Content will be dynamically loaded here -->
-    </div>
-</div>
+<!--<div class="main-content">-->
+<!--    <div class="header">-->
+<!--        <h1>Email Client</h1>-->
+<!--    </div>-->
+<!--    <div class="email-list" id="content">-->
+<!--        &lt;!&ndash; Content will be dynamically loaded here &ndash;&gt;-->
+<!--    </div>-->
+<!--</div>-->
 
-<script>
-    // Show the compose email form
-    function showCompose() {
-        document.getElementById('content').innerHTML = `
-                <div class="compose-email">
-                    <h2>Compose Email</h2>
-                    <form onsubmit="sendEmail(event)">
-                        <input type="email" id="to" placeholder="To" required>
-                        <input type="text" id="subject" placeholder="Subject" required>
-                        <textarea id="message" rows="5" placeholder="Message" required></textarea>
-                        <button type="submit">Send</button>
-                    </form>
-                </div>
-            `;
-    }
+<!--<script>-->
+<!--    // Show the compose email form-->
+<!--    function showCompose() {-->
+<!--        document.getElementById('content').innerHTML = `-->
+<!--                <div class="compose-email">-->
+<!--                    <h2>Compose Email</h2>-->
+<!--                    <form onsubmit="sendEmail(event)">-->
+<!--                        <input type="email" id="to" placeholder="To" required>-->
+<!--                        <input type="text" id="subject" placeholder="Subject" required>-->
+<!--                        <textarea id="message" rows="5" placeholder="Message" required></textarea>-->
+<!--                        <button type="submit">Send</button>-->
+<!--                    </form>-->
+<!--                </div>-->
+<!--            `;-->
+<!--    }-->
 
-    // Send the email (this is a placeholder for the real send functionality)
-    function sendEmail(event) {
-        event.preventDefault();
-        alert('Email sent!');
-        loadInbox();
-    }
+<!--    // Send the email (this is a placeholder for the real send functionality)-->
+<!--    function sendEmail(event) {-->
+<!--        event.preventDefault();-->
+<!--        alert('Email sent!');-->
+<!--        loadInbox();-->
+<!--    }-->
 
-    // Load inbox emails (this is a placeholder for the real load functionality)
-    function loadInbox() {
-        document.getElementById('content').innerHTML = `
-                <h2>Inbox</h2>
-                <div class="email-item">Sample Email 1</div>
-                <div class="email-item">Sample Email 2</div>
-                <div class="email-item">Sample Email 3</div>
-            `;
-    }
+<!--    // Load inbox emails (this is a placeholder for the real load functionality)-->
+<!--    function loadInbox() {-->
+<!--        document.getElementById('content').innerHTML = `-->
+<!--                <h2>Inbox</h2>-->
+<!--                <div class="email-item">Sample Email 1</div>-->
+<!--                <div class="email-item">Sample Email 2</div>-->
+<!--                <div class="email-item">Sample Email 3</div>-->
+<!--            `;-->
+<!--    }-->
 
-    // Load sent emails (this is a placeholder for the real load functionality)
-    function loadSent() {
-        document.getElementById('content').innerHTML = `
-                <h2>Sent Emails</h2>
-                <div class="email-item">Sample Sent Email 1</div>
-                <div class="email-item">Sample Sent Email 2</div>
-            `;
-    }
+<!--    // Load sent emails (this is a placeholder for the real load functionality)-->
+<!--    function loadSent() {-->
+<!--        document.getElementById('content').innerHTML = `-->
+<!--                <h2>Sent Emails</h2>-->
+<!--                <div class="email-item">Sample Sent Email 1</div>-->
+<!--                <div class="email-item">Sample Sent Email 2</div>-->
+<!--            `;-->
+<!--    }-->
 
-    // Load the inbox by default
-    loadInbox();
-</script>
+<!--    // Load the inbox by default-->
+<!--    loadInbox();-->
+<!--</script>-->
 </body>
 </html>

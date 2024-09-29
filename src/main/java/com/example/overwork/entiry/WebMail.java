@@ -11,6 +11,16 @@ public class WebMail {
     private String message;
     private MultipartFile multipartFile;
 
+    @Override
+    public String toString() {
+        return "WebMail{" +
+                "address='" + address + '\'' +
+                ", title='" + title + '\'' +
+                ", message='" + message + '\'' +
+                ", multipartFile=" + multipartFile +
+                '}';
+    }
+
     public String getAddress() {
         return address;
     }

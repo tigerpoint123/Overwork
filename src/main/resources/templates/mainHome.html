@@ -1,59 +1,148 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>메인 홈페이지</title>
-  <link rel="stylesheet" href="../static/style.css" th:href="@{style.css}">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>메인 홈페이지</title>
+    <link rel="stylesheet" href="../static/style.css" th:href="@{style.css}">
+    <link href='https://cdn.jsdelivr.net/npm/fullcalendar@5.11.0/main.min.css' rel='stylesheet' />
+    <link href='https://cdn.jsdelivr.net/npm/fullcalendar@5.11.0/main.min.css' rel='stylesheet' />
+    <link rel="stylesheet" href="../static/calendar.css" th:href="@{calendar.css}">
+    <script src='https://cdn.jsdelivr.net/npm/fullcalendar@5.11.0/main.min.js'></script>
 
 </head>
 <body>
 <header>
-  <h1>메인 홈페이지</h1>
+    <h1>메인 홈페이지</h1>
 </header>
 
-<nav>
-  <a href="/">홈</a>
-  <a href="/webmail">이메일</a>
-  <a href="/overworkMain">초과근무</a>
-  <a href="/totalAdmin/totalAdminMain">연통</a>
-  <a href="/humanResource/humanResourceMain">국인체</a>
-  <a href="/map">지도</a>
+<nav class="grid-container">
+    <a href="/">홈</a>
+    <a href="/webmail"><img src="img/img.jpg" id="email-img"/></a>
+    <a href="/overworkMain">초과근무</a>
+    <a href="/totalAdmin/totalAdminMain"><img src="img/img(2).jpg"/></a>
+    <a href="/humanResource/humanResourceMain">국인체</a>
+    <a href="/map">지도</a>
 </nav>
 
 <main>
-  <h2>환영합니다!</h2>
-  <p>여기에 홈페이지 내용을 입력하세요.</p>
+    <h2>환영합니다!</h2>
+    <p>여기에 홈페이지 내용을 입력하세요.</p>
 
-  <div class="login-box">
-    <h3>로그인</h3>
-    <form action="/login"  id="login-form" method="post">
-      <label for="username">아이디</label>
-      <input type="text" id="username" name="username" required>
+    <div id="eventModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>일정 추가</h2>
+            <input type="text" id="event-title" placeholder="일정 제목" required>
+            <button id="save-event-btn">일정 저장</button>
+        </div>
+    </div>
 
-      <label for="password">비밀번호</label>
-      <input type="password" id="password" name="password" required>
+    <div id="calendar"></div>
+    <script >
+        document.addEventListener('DOMContentLoaded', function() {
+            var calendarEl = document.getElementById('calendar');
+            var calendar = new FullCalendar.Calendar(calendarEl, {
+                initialView: 'dayGridMonth',
+                editable: true,  // 일정 수정 가능 (드래그 앤 드롭)
+                droppable: true,  // 외부 소스에서 드래그 가능하게 할 때 사용 (옵션)
+                dateClick: function(info) {
+                    openModal(info.dateStr);
+                },
+                eventClick: function(info) {
+                    if (confirm(info.event.title + ' 일정을 삭제하시겠습니까?')) {
+                        info.event.remove();  // 일정 삭제
+                        alert('일정이 삭제되었습니다.');
+                    }
+                },
+                events: [
+                    {
+                        title: '회의',
+                        start: '2024-10-01'
+                    },
+                    {
+                        title: '출장',
+                        start: '2024-10-05',
+                        end: '2024-10-07'
+                    }
+                ]
+            });
+            calendar.render();
 
-      <button type="submit">로그인</button>
-    </form>
-  </div>
-  <a href="/members">회원 목록</a>
-  <div class="signup-box">
-    <h3>회원가입</h3>
-    <form action="/signIn" method="post">
-      <label for="new-username">아이디</label>
-      <input type="text" id="new-username" name="new-username" required>
+            // 모달 관련 요소
+            var modal = document.getElementById("eventModal");
+            var span = document.getElementsByClassName("close")[0];
+            var saveBtn = document.getElementById("save-event-btn");
+            var clickedDate;
 
-      <label for="new-password">비밀번호</label>
-      <input type="password" id="new-password" name="new-password" required>
+            // 모달 열기
+            function openModal(dateStr) {
+                modal.style.display = "block";
+                clickedDate = dateStr;
+            }
 
-      <button type="submit">회원가입</button>
-    </form>
-  </div>
+            // 모달 닫기
+            span.onclick = function() {
+                modal.style.display = "none";
+            }
+
+            window.onclick = function(event) {
+                if (event.target == modal) {
+                    modal.style.display = "none";
+                }
+            }
+
+            // 일정 저장
+            saveBtn.onclick = function() {
+                var title = document.getElementById('event-title').value;
+
+                if (title) {
+                    calendar.addEvent({
+                        title: title,
+                        start: clickedDate,
+                        allDay: true
+                    });
+                    alert('일정이 추가되었습니다: ' + title);
+
+                    // 입력 폼 초기화 및 모달 닫기
+                    document.getElementById('event-title').value = '';
+                    modal.style.display = "none";
+                } else {
+                    alert('일정 제목을 입력하세요!');
+                }
+            }
+        });
+    </script>
+
+    <div class="login-box">
+        <h3>로그인</h3>
+        <form action="/login" id="login-form" method="post">
+            <label for="username">아이디</label>
+            <input type="text" id="username" name="username" required>
+
+            <label for="password">비밀번호</label>
+            <input type="password" id="password" name="password" required>
+
+            <button type="submit">로그인</button>
+        </form>
+    </div>
+    <a href="/members">회원 목록</a>
+    <div class="signup-box">
+        <h3>회원가입</h3>
+        <form action="/signIn" method="post">
+            <label for="new-username">아이디</label>
+            <input type="text" id="new-username" name="new-username" required>
+
+            <label for="new-password">비밀번호</label>
+            <input type="password" id="new-password" name="new-password" required>
+
+            <button type="submit">회원가입</button>
+        </form>
+    </div>
 </main>
 
 <footer>
-  <p>&copy; 2024 나의 멋진 홈페이지. 모든 권리 보유.</p>
+    <p>&copy; 2024 나의 멋진 홈페이지. 모든 권리 보유.</p>
 </footer>
 
 </body>

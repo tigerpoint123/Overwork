@@ -11,11 +11,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class WebmailController {
-    private final LoginService loginService;
     private final WebMailService webMailService;
 
-    public WebmailController(LoginService loginService, WebMailService webMailService) {
-        this.loginService = loginService;
+    public WebmailController(WebMailService webMailService) {
         this.webMailService = webMailService;
     }
 
@@ -26,12 +24,13 @@ public class WebmailController {
     }
 
     @PostMapping("/mail")
-    public String mail(WebMail webMail) {
-        webMail.setAddress("tigerrla24@gmail.com");
-        webMail.setTitle("테스트");
-        webMail.setMessage("테스트 확인중");
+    public String mail(WebMail webMail,
+                       @RequestParam("message") String msg, @RequestParam("address") String address,
+                       @RequestParam("title") String title) {
+        webMail.setAddress(address);
+        webMail.setTitle(title);
+        webMail.setMessage(msg);
         webMailService.mailSend(webMail);
-
         return "webmail";
     }
 }

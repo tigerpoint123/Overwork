@@ -169,3 +169,11 @@ li {
 .sidebar ul li a:hover {
     background-color: #ddd; /* 기능 항목에 마우스를 올렸을 때 색상 변경 */
 }
+
+.grid-container{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);  /* 가로 4칸 */
+    grid-template-rows: repeat(2, 1fr);     /* 세로 2칸 */
+    gap: 10px;  /* 칸 사이의 간격 */
+    padding: 20px;
+}

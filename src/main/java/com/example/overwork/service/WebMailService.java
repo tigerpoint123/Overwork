@@ -1,6 +1,7 @@
 package com.example.overwork.service;
 
 import com.example.overwork.entiry.WebMail;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;

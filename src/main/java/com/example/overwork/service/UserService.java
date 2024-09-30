@@ -24,7 +24,6 @@ public class UserService implements UserDetailsService {
         this.memberRepository = memberRepository;
         this.passwordEncoder = passwordEncoder;
     }
-
     public void save(Member member) {
         member.setPassword(passwordEncoder.encode(member.getPassword()));
         memberRepository.save(member);
@@ -36,6 +35,7 @@ public class UserService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        return memberRepository.findByName(username).orElseThrow(()-> new UsernameNotFoundException(username));
+        Member member = memberRepository.findByName(username).orElseThrow(() -> new UsernameNotFoundException(username));
+        return member;
     }
 }

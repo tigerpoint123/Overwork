@@ -3,6 +3,7 @@ package com.example.overwork.controller;
 import com.example.overwork.entiry.WebMail;
 import com.example.overwork.service.LoginService;
 import com.example.overwork.service.WebMailService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class WebmailController {
     private final WebMailService webMailService;
 
+    @Autowired
     public WebmailController(WebMailService webMailService) {
         this.webMailService = webMailService;
     }

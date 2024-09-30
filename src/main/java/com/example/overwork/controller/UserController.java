@@ -53,9 +53,11 @@ public class UserController {
                         @RequestParam("password") String password, Model model, Member member) {
         member.setUsername(username);
         member.setPassword(password);
-        userService.loadUserByUsername(username);
-
-        return "afterLoginOvertime";
+        if(memberService.loadUserByUsername(username) == null){
+            return "redirect:/login";
+        } else {
+            return "afterLoginOvertime";
+        }
     }
 
     @GetMapping("/signIn")
@@ -68,7 +70,7 @@ public class UserController {
                          @RequestParam("new-password") String password, Model model, Member member) {
         member.setUsername(username);
         member.setPassword(password);
-        userService.save(member);
+        memberService.save(member);
 
         return "redirect:/";
     }

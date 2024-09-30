@@ -10,7 +10,7 @@ import java.util.Optional;
 
 @Service
 @Transactional
-public class LoginService{
+public class LoginService {
     Member member = new Member();
 
     @Autowired
@@ -24,10 +24,9 @@ public class LoginService{
         this.member = member;
         Optional<Member> findByName = memberRepository.findByName(this.member.getUsername());
 
-        if(findByName.isPresent() && this.member.getUsername().equals(findByName.get().getUsername()) && this.member.getPassword().equals(findByName.get().getPassword())) {
+        if (findByName.isPresent() && this.member.getUsername().equals(findByName.get().getUsername()) && this.member.getPassword().equals(findByName.get().getPassword())) {
             return true;
-        }
-        else return false;
+        } else return false;
     }
 
     public String findUserName(Member member) {
@@ -39,4 +38,6 @@ public class LoginService{
     public Member saveData() {
         return this.member;
     }
+
+
 }

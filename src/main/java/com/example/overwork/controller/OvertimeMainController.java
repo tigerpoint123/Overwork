@@ -38,7 +38,6 @@ public class OvertimeMainController {
         return "members/memberList";
     }
 
-
     private void addUserName(Model model) {
         Member member = loginService.saveData();
         model.addAttribute("member", member);

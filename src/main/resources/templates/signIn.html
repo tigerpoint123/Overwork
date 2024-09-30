@@ -5,8 +5,17 @@
     <title>SignIn</title>
 </head>
 <body>
-<h1>회원가입</h1>
-<p>아이디: ${username}</p>
-<p>비밀번호: ${password}</p>
+<div class="signup-box">
+    <h3>회원가입</h3>
+    <form action="/signIn" method="post">
+        <label for="new-username">아이디</label>
+        <input type="text" id="new-username" name="new-username" required>
+
+        <label for="new-password">비밀번호</label>
+        <input type="password" id="new-password" name="new-password" required>
+
+        <button type="submit">회원가입</button>
+    </form>
+</div>
 </body>
 </html>

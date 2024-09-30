@@ -42,4 +42,5 @@ public class SpringConfig {
 
     @Bean
     public TotalAdminRepository totalAdminRepository() {return new JpaTotalAdminRepository(em);}
+
 }

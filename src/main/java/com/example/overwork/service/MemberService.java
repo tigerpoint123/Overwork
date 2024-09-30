@@ -4,6 +4,9 @@ import com.example.overwork.entiry.Member;
 import com.example.overwork.repository.MemberRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -11,7 +14,7 @@ import java.util.Optional;
 
 @Service
 @Transactional
-public class MemberService {
+public class MemberService implements UserDetailsService {
     private final MemberRepository memberRepository;
 
     @Autowired
@@ -21,10 +24,7 @@ public class MemberService {
 
     public Long join(Member member) {
         validateDuplicateMember(member);
-
         memberRepository.save(member);
-//        System.out.println("ID : " +member.getUsername());
-
         return member.getId();
     }
 
@@ -39,5 +39,10 @@ public class MemberService {
     }
     public Optional<Member> findOne(Long id) {
         return memberRepository.findById(id);
+    }
+
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        return memberRepository.findByName(username).orElseThrow(() -> new UsernameNotFoundException(username));
     }
 }

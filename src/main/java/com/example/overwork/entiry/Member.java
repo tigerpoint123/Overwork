@@ -21,6 +21,33 @@ public class Member implements UserDetails {
     private String password;
 
     private String grade;
+    private String webmail;
+    private String phone;
+    private String address;
+
+    public String getWebmail() {
+        return webmail;
+    }
+
+    public void setWebmail(String webmail) {
+        this.webmail = webmail;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
 
     public Member(String username, String password, Long id, String grade) {
         this.username = username;

@@ -47,7 +47,7 @@ public class SecurityConfig implements WebSecurityCustomizer {
                         .requestMatchers("/login", "/signIn", "/webmail", "/**")//특정 요청과 일치하는 url에 대한 엑세스 설정
                         .permitAll() // 누구나 접근 가능. requestMatchers의 url은 인증 인가 없이도 접근 가능
                         .anyRequest() // requestMatchers url 외의 요청에 대한 설정
-                        .authenticated())
+                        .authenticated()) //인가x 인증o
                 .formLogin(formLogin -> formLogin.loginPage("/login")
                         .loginProcessingUrl("/home").defaultSuccessUrl("/"))
                 .logout(logout -> logout.logoutSuccessUrl("/overwork/overworkMain")
@@ -55,8 +55,6 @@ public class SecurityConfig implements WebSecurityCustomizer {
 
         return http.build();
     }
-
-
 
     //인증 관리자 권한 설정
     @Bean

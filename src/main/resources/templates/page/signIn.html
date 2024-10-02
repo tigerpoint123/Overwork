@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+<head>
+    <meta charset="UTF-8">
+    <title>SignIn</title>
+</head>
+<body>
+<div class="signup-box">
+    <h3>회원가입</h3>
+    <form action="/signIn" method="post" onsubmit="return valid()">
+        <label for="name" id="">이름</label>
+        <input type="text" id="name" name="name" required>
+
+        <label for="new-username" id="label1">아이디</label>
+        <input type="text" id="new-username" name="new-username">
+<!--            <div id="idAvailable" class="valid-feedback" style="display: none"></div>-->
+<!--            <div id="idNotAvailable" class="invalid-feedback" style="display: none"></div>-->
+        <button type="button" onclick="sameNameCheck()" >중복확인</button>
+
+        <label for="new-password">비밀번호</label>
+        <input type="password" id="new-password" name="new-password" >
+
+        <label for="webmail">웹메일</label>
+        <input type="text" id="webmail" name="webmail" >
+
+        <label for="address">주소</label>
+        <input type="text" id="address" name="address" >
+
+        <label for="phone-number">핸드폰번호</label>
+        <input type="text" id="phone-number" name="phone-number" >
+
+        <button type="submit">회원가입</button>
+    </form>
+    <script>
+        let submitCheck = false;
+
+        function valid() {
+            if (submitCheck) {
+                return true;
+            } else {
+                alert('아이디 중복을 확인해주세요');
+                return false;
+            }
+        }
+
+        function sameNameCheck() {
+            let userid = $('#new-username').val(); // input 태그에서 받은 입력값
+
+            $.ajax({
+                type:"get",
+                url: "check?userid="+userid
+            }).done((res) => {
+                if (res.data === true) {
+                    alert(res.message);
+                    submitCheck = true;
+                } else {
+                    alert(res.message);
+                    submitCheck = false;
+                }
+            });
+        }
+
+    </script>
+
+</div>
+</body>
+</html>

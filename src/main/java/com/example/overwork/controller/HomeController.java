@@ -1,13 +1,10 @@
 package com.example.overwork.controller;
 
-import com.example.overwork.entiry.Member;
 import com.example.overwork.service.LoginService;
 import com.example.overwork.service.MemberService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class HomeController {
@@ -21,7 +18,7 @@ public class HomeController {
 
     @GetMapping("/")
     public String test(Model model) {
-        return "mainHome";
+        return "/page/mainHome";
     }
 
 
@@ -31,4 +28,8 @@ public class HomeController {
         return "/overwork/overworkMain";
     }
 
+    @GetMapping("/map")
+    public String map() {
+        return "map";
+    }
 }

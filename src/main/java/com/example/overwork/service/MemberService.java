@@ -43,6 +43,9 @@ public class MemberService implements UserDetailsService {
     public Optional<Member> findOne(Long id) {
         return memberRepository.findById(id);
     }
+    public Optional<Member> findByName(String name) {
+        return memberRepository.findByName(name);
+    }
 
     public void save(Member member) {
         PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
@@ -51,7 +54,7 @@ public class MemberService implements UserDetailsService {
     }
 
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         Member member = memberRepository.findByName(username).orElseThrow(() -> new UsernameNotFoundException(username));
         return member;
     }

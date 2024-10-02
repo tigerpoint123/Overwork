@@ -41,4 +41,10 @@ public class JpaMemberRepository implements MemberRepository {
         return em.createQuery("select m from Member m", Member.class).getResultList(); //JPQL
     }
 
+    @Override
+    public boolean existsByUsername(String username) {
+        return em.createQuery("select m from Member m where m.username =: username", Member.class)
+                .setParameter("username", username).getResultList().stream().findFirst().isPresent();
+    }
+
 }

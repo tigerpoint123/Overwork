@@ -1,7 +1,6 @@
 package com.example.overwork.controller;
 
 import com.example.overwork.entiry.WebMail;
-import com.example.overwork.service.LoginService;
 import com.example.overwork.service.WebMailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -21,8 +20,7 @@ public class WebmailController {
 
     @GetMapping("/webmail")
     public String webmail(Model model) {
-
-        return "webmail";
+        return "/webmail/webmail";
     }
 
     @PostMapping("/mail")
@@ -33,6 +31,6 @@ public class WebmailController {
         webMail.setTitle(title);
         webMail.setMessage(msg);
         webMailService.mailSend(webMail);
-        return "webmail";
+        return "/webmail/webmail";
     }
 }

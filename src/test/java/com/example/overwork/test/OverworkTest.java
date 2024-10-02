@@ -45,12 +45,15 @@ class OverworkTest {
     void 사용자만들기() {
         Member member = new Member();
         //given
-        member.setUsername("user");
-        member.setPassword("user");
+        member.setUsername("user2");
+        member.setPassword("user2");
         member.setGrade("user");
+        member.setWebmail("tigerrla@naver.com");
+        member.setPhone("010-3494-8999");
+        member.setAddress("서울");
 
         //when
-        Long id = memberService.join(member);
+        memberService.save(member);
     }
 
     @Test

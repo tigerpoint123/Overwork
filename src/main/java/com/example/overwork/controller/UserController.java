@@ -1,27 +1,27 @@
 package com.example.overwork.controller;
 
-import com.example.overwork.entiry.ApplyRecord;
 import com.example.overwork.entiry.Member;
+import com.example.overwork.entiry.ResponseDto;
 import com.example.overwork.service.ApplyService;
 import com.example.overwork.service.LoginService;
 import com.example.overwork.service.MemberService;
 import com.example.overwork.service.UserService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import org.apache.coyote.BadRequestException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.MissingServletRequestParameterException;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.net.http.HttpRequest;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 @Controller
 public class UserController {
@@ -38,14 +38,9 @@ public class UserController {
         this.userService = userService;
     }
 
-    @GetMapping("/map")
-    public String map() {
-
-        return "map";
-    }
     @GetMapping("/login")
     public String login(Model model) {
-        return "login";
+        return "/page/login";
     }
 
     @PostMapping("/login")
@@ -53,21 +48,21 @@ public class UserController {
                         @RequestParam("password") String password, Model model, Member member) {
         member.setUsername(username);
         member.setPassword(password);
-        if(memberService.loadUserByUsername(username) == null){
+        if (memberService.loadUserByUsername(username) == null) {
             return "redirect:/login";
         } else {
-            return "afterLoginOvertime";
+            return "/page/afterLoginOvertime";
         }
     }
 
     @GetMapping("/signIn")
     public String signIn(Model model) {
-        return "signIn";
+        return "/page/signIn";
     }
 
     @PostMapping("/signIn")
     public String signin(@RequestParam("new-username") String username,
-                         @RequestParam("new-password") String password, Model model, Member member) {
+                         @RequestParam(value = "new-password") String password, Model model, Member member) {
         member.setUsername(username);
         member.setPassword(password);
         memberService.save(member);
@@ -81,6 +76,23 @@ public class UserController {
                 SecurityContextHolder.getContext().getAuthentication());
         return "redirect:/logout";
     }
+
+    @ExceptionHandler(MissingServletRequestParameterException.class)
+    @ResponseBody
+    public String handleMissingServletRequestParameterException(
+            MissingServletRequestParameterException ex) {
+        return "paramer is null : " + ex.getParameterName();
+    }
+
+    @GetMapping("check")
+    public @ResponseBody ResponseDto<?> check(@RequestParam(value = "userid") String username) {
+        if (memberService.findByName(username).isEmpty()) {
+            return new ResponseDto<>(1, "사용 가능", true); // db에 아이디 없으면 사용 가능 알림
+        } else {
+            return new ResponseDto<>(1, "사용 불가능", false);// db에 아이디 있으면 사용 불가능 알림
+        }
+    }
+
 }
 
 
